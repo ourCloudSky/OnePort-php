@@ -20,9 +20,7 @@ A Super Fast And Good Proxy Written in PHP.
 - I want to access my "Inside-Network(??)", but I cannot use VPN or Ngrok | 我希望访问我的内网，但我不会用虚拟专用网络和内网映射
 - I want to turn Socket to WebSocket without editing the program | 我想把Socket不经修改程序转为WebSocket
 - I only have 80 port and I want to run OnePort and HttpServer together | 我只有80端口却想将OnePort与Http服务一起运行
-> **本品只是由于作者只有一个端口映射到外网却又想在其他地方同时访问web,ftp,rdp等服务，才制作。请自觉，不要用于fanqiang等行为，否则被封，后果自负，本人不承担任何责任。**
-
-> 给电信：若有人使用本作品做违法行为，请立即封本作品，我在每个数据包的头部都加上了 "Powered By OnePort Use It Under The Law" 字样，只要不请我去喝茶就是了。
+> **本端口映射限于私有云计算服务等使用，商业/公共使用请联系邮箱xtl@xtlsoft.top，集成到CloudSky的除外。 **
 
 ## 灵感来源
 作者一台服务器，一开始ISP只开80端口，为了一起使用Web, RDP, MySQL, NoSQL, SSH, WebSocket等服务，费劲脑筋上网查找，发现找不到。虽然后来联系ISP关闭了WAF，全端口映射，但是可能有的小伙伴可能还有疑问。
