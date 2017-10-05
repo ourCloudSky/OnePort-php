@@ -22,6 +22,8 @@
     require "Workerman/Autoloader.php";
     require "iniReader.php";
     
+    define("PHPDir", '/usr/bin/');
+    
     //Get the config
     $GLOBALS['conf'] = getiniconfig("./config.ini");
     global $conf;
