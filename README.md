@@ -1,11 +1,12 @@
 # OnePort
+[![license](https://img.shields.io/apm/l/vim-mode.svg)](https://github.com/ourCloudSky/OnePort/blob/master/LICENSE)
 A Super Fast And Good Proxy Written in PHP.
 
 [![OnePort](https://github.com/ourCloudSky/OnePort/raw/master/docs/logo.png)](https://github.com/ourCloudSky/OnePort)
 [![CloudSky](https://avatars0.githubusercontent.com/u/32470726?v=4&s=200)](https://github.com/ourCloudSky)
 
 ## 文档 Document
-[http://docs.xapps.top/docs/show/1](http://docs.xapps.top/docs/show/1)
+[https://docs.xapps.top/docs/show/1](https://docs.xapps.top/docs/show/1)
 
 ## 特性 Feature
 - Fast, Responsive, Cross-platform | 快速，响应式，跨平台
@@ -23,7 +24,7 @@ A Super Fast And Good Proxy Written in PHP.
 - I want to access my internal network, but I cannot use VPN or intranet mapping | 我希望访问我的内网，但我不会用虚拟专用网络和内网映射
 - I want to turn Socket to WebSocket without editing the program | 我想把 Socket 不经修改程序转为 WebSocket
 - I only have 80 port and I want to run OnePort and HttpServer together | 我只有 80 端口却想将 OnePort 与 Http 服务一起运行
-> ** OnePort 允许你以自由地以非商业化模式使用，商业（除集成至 CloudSky）使用请联系邮箱 xtl@xtlsoft.top **
+> ** OnePort 允许你以自由地以非商业化模式使用，商业（除集成至 CloudSky）使用请联系邮箱 xtl@xtlsoft.top ,以便我们提供更完善的服务。**
 
 ## 灵感来源
 作者一台服务器，一开始 ISP 只开80端口，为了一起使用 Web, RDP, MySQL, NoSQL, SSH, WebSocket 等服务，费劲脑筋上网查找，发现找不到。虽然后来联系 ISP 关闭了 WAF，全端口映射，但是可能有的小伙伴还有这种问题，故开发了 OnePort。
