@@ -1,0 +1,19 @@
+{
+    "name": "xtlsoft/oneport",
+    "description": "An application let you do everything in just a port. A super gateway.",
+    "type": "library",
+    "require": {
+        "php": ">=5.4",
+        "workerman/workerman": "^3.5"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tianle Xu",
+            "email": "xtlsoft@126.com"
+        }
+    ],
+    "autoload": {
+        "CloudSky\\OnePort\\": "./src/"
+    }
+}
