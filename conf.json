@@ -1,0 +1,6 @@
+{
+    "name": "abc",
+    "count": "3",
+    "http.method": "proxy",
+    "http.proxy": "http:\/\/127.0.0.1\/"
+}

@@ -14,7 +14,9 @@
         }
     ],
     "autoload": {
-        "CloudSky\\OnePort\\": "./src/",
-        "Workerman\\Protocols\\": "./src/Protocols/"
+        "psr-4": {
+            "CloudSky\\OnePort\\": "./src/",
+            "Workerman\\Protocols\\": "./src/Protocols/"
+        }
     }
 }
