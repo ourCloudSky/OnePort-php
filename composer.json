@@ -14,6 +14,7 @@
         }
     ],
     "autoload": {
-        "CloudSky\\OnePort\\": "./src/"
+        "CloudSky\\OnePort\\": "./src/",
+        "Workerman\\Protocols\\": "./src/Protocols/"
     }
 }
