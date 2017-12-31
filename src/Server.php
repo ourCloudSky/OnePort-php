@@ -162,4 +162,160 @@
 
         }
 
+        public function addUser($name, $password){
+
+            @$this->config['user'][$name] = [
+                "password"  => hash('sha512', $password),
+                "whitelist" => [],
+                "blacklist" => [],
+                "shortcut"  => []
+            ];
+
+            return $this;
+
+        }
+
+        public function removeUser($name){
+
+            unset($this->config['user'][$name]);
+
+            return $this;
+
+        }
+
+        public function setPassword($name, $password){
+
+            $this->config['user'][$name]['password'] = hash('sha512', $password);
+
+            return $this;
+
+        }
+
+        public function addWhiteList($user, $addr){
+
+            if(is_array($addr)){
+
+                foreach($addr as $a){
+                    $this->addWhiteList($user, $a);
+                }
+
+            }else{
+
+                $this->config['user'][$user]['whitelist'][] = $addr;
+
+            }
+
+            return $this;
+
+        }
+
+        public function addBlackList($user, $addr){
+            
+            if(is_array($addr)){
+            
+                foreach($addr as $a){
+                    $this->addBlackList($user, $a);
+                }
+            
+            }else{
+            
+                $this->config['user'][$user]['blacklist'][] = $addr;
+            
+            }
+            
+            return $this;
+            
+        }
+
+        public function disableWhiteList($user){
+
+            $this->config['user'][$user]['whitelist'] = [];
+
+            return $this;
+
+        }
+
+        public function disableBlackList($user){
+
+            $this->config['user'][$user]['blacklist'] = [];
+            
+            return $this;
+
+        }
+
+        public function addUserShortcut($name, $alias, $addr){
+
+            $this->config['user'][$name]['shortcut'][$alias] = $addr;
+
+            return $this;
+
+        }
+
+        public function removeUserShortcut($name, $alias){
+
+            unset($this->config['user'][$name]['shortcut'][$alias]);
+
+            return $this;
+
+        }
+
+        public function addShortcut($alias, $addr, $name = null){
+
+            if($name !== null){
+                return $this->addUserShortcut($name, $alias, $addr);
+            }
+
+            $this->config['shortcut'][$alias] = $addr;
+
+            return $this;
+
+        }
+
+        public function removeShortcut($alias, $user = null){
+
+            if($name !== null){
+                return $this->removeUserShortcut($user, $alias);
+            }
+
+            unset($this->config['shortcut'][$alias]);
+
+            return $this;
+
+        }
+
+        protected function auth($name, $pass){
+
+            $realpass = $this->config[$name]['password'];
+            $inputpass = hash('sha512', $pass);
+
+            return ( $inputpass === $realpass );
+
+        }
+
+        protected function dealUri($uri, $user){
+
+            $wl = $this->config['user'][$user]['whitelist'];
+            $bl = $this->config['user'][$user]['blacklist'];
+            $al = array_merge($this->config['shortcut'], $this->config['user'][$user]['shortcut']);
+
+            $ok = false;
+
+            if($wl != []){
+                $ok = in_array($uri, $wl);
+            }else{
+                $ok = !(in_array($uri, $bl));
+            }
+
+            if(!$ok){
+                return false;
+            }
+
+            if(isset($al[$uri])){
+                $uri = $al[$uri];
+            }
+
+            return $uri;
+
+        }
+
     }
