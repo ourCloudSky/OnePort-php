@@ -102,7 +102,8 @@
 
         public function handleClose($conn){
 
-            @$this->atc[$conn->id]->close();
+            if(isset($this->atc[$conn->id]))
+                $this->atc[$conn->id]->close();
 
         }
 
@@ -119,7 +120,7 @@
 
         public function handleMessage($conn, $msg){
 
-            $this->atc[$conn->id]->send($msg);
+            $this->atc[$conn->id]->send(base64_decode($msg));
 
         }
 
@@ -150,7 +151,7 @@
             $atc->transport = $trans;
 
             $atc->onMessage = function($con, $m) use ($conn){
-                $conn->send($m);
+                $conn->send(base64_encode($m));
             };
             $atc->onClose = function($con) use ($conn){
                 $conn->close();
@@ -315,6 +316,18 @@
             }
 
             return $uri;
+
+        }
+
+        public function handleHttp($conn, $msg){
+
+            // $type = $this->config['http.handle'];
+            // switch($type){
+
+            // }
+                echo 'abc';
+            $conn->send("200 OK\r\nStatus: OK\r\nServer: OnePort\r\n\r\nOK!");
+            $conn->close();
 
         }
 
