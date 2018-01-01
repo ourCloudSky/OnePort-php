@@ -1,6 +1,6 @@
 {
-    "name": "abc",
+    "name": "test",
     "count": "3",
-    "http.method": "proxy",
-    "http.proxy": "http:\/\/127.0.0.1\/"
+    "http.type": "proxy",
+    "http.param": "tcp://127.0.0.1:80"
 }

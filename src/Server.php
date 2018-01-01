@@ -321,13 +321,32 @@
 
         public function handleHttp($conn, $msg){
 
-            // $type = $this->config['http.handle'];
-            // switch($type){
+            $type = $this->config['http.type'];
+            $param = $this->config['http.param'];
+            switch($type){
 
-            // }
-                echo 'abc';
-            $conn->send("200 OK\r\nStatus: OK\r\nServer: OnePort\r\n\r\nOK!");
-            $conn->close();
+                case 'jump':
+                    $conn->send("HTTP/1.1 302 Found\r\nServer: OnePort\r\nlocation: $param\r\n\r\n\r\n", 1);
+                    $conn->close();
+                    break;
+
+                case 'handle':
+                    $conn->send("HTTP/1.1 200 OK\r\nServer: OnePort\r\n" . shell_exec("php-cgi $param"), 1);
+                    $conn->close();
+                    break;
+
+                case 'proxy':
+                    $atc = new \Workerman\Connection\AsyncTcpConnection($param);
+                    $atc->onMessage = function($c, $m) use ($conn){
+                        $conn->send($m, 1);
+                    };
+                    $atc->onClose = function($c) use ($conn){
+                        $conn->close();
+                    };
+
+                    $atc->connect();
+                    $atc->send($msg);
+            }
 
         }
 
