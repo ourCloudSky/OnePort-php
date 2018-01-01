@@ -42,16 +42,45 @@ $server->config([
 | http.type | Http访问时的handler | jump 或 proxy 或 handle |
 | http.param | Http访问时所使用Handler的参数 | jump例子：http://baidu.com/ proxy例子：tcp://127.0.0.1:80 handle例子：/home/oneport/handler.php |
 
-### 1.2.3 配置用户
-#### 1.2.3.1 添加用户
+### 1.3 配置用户
+#### 1.3.1 添加用户
 ```php
 $server->addUser('someUser', 'password');
 ```
-#### 1.2.3.2 删除用户
+#### 1.3.2 删除用户
 ```php
 $server->removeUser('someUser');
 ```
-#### 1.2.3.3 修改用户密码
+#### 1.3.3 修改用户密码
 ```php
 $server->setPassword('someUser', 'password');
+```
+### 1.4 黑白名单
+#### 1.4.1 为用户白名单中添加内容：
+```php
+$server->addWhiteList('someUser', 'tcp://something.let.someuser.see:1234');
+```
+#### 1.4.2 为用户黑名单中添加内容：
+```php
+$server->addBlackList('someUser', 'tcp://something.don.t.let.someuser.see:1234');
+```
+#### 1.4.3 为用户关闭白名单
+```php
+$server->disableWhiteList('someUser');
+```
+#### 1.4.4 为用户关闭黑名单
+```php
+$server->disableBlackList('someUser');
+```
+#### 1.4.5 一些说明
+当黑白名单都开启时，优先使用白名单。
+
+### 1.5 导出配置
+```php
+$server->exportConfig('path/to/config.json');
+```
+
+### 1.6 监听某一端口
+```php
+$server->listen('0.0.0.0:5280');
 ```
