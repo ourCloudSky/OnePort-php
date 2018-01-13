@@ -1,1 +1,0 @@
-start ../php/php ./main.php
