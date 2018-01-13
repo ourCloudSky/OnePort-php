@@ -2,11 +2,13 @@
 
 require "vendor/autoload.php";
 
+$echoserver = new \CloudSky\OnePort\Dev\EchoServer("tcp://127.0.0.1:3245");
+
 $server = new \CloudSky\OnePort\Server();
 
 $server->importConfig('./conf.json');
 
-// $server->addUser('name', 'value');
+$server->addUser('test', '123');
 
 $server->config([
     "name" => "abc",
@@ -16,7 +18,7 @@ $server->config([
 // $server->config('http.type', 'proxy');
 // $server->config('http.param', 'http://127.0.0.1/');
 
-// $server->exportConfig('./conf.json');
+$server->exportConfig('./conf.json');
 
 $server->listen("0.0.0.0:5280");
 

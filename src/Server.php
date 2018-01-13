@@ -286,7 +286,7 @@
 
         protected function auth($name, $pass){
 
-            $realpass = $this->config[$name]['password'];
+            $realpass = $this->config['user'][$name]['password'];
             $inputpass = hash('sha512', $pass);
 
             return ( $inputpass === $realpass );
@@ -297,7 +297,7 @@
 
             $wl = $this->config['user'][$user]['whitelist'];
             $bl = $this->config['user'][$user]['blacklist'];
-            $al = array_merge($this->config['shortcut'], $this->config['user'][$user]['shortcut']);
+            $al = @array_merge($this->config['shortcut'], $this->config['user'][$user]['shortcut']);
 
             $ok = false;
 

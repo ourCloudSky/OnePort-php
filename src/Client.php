@@ -48,33 +48,35 @@
 
         public function map($orgin, $mirror, $trans = "tcp"){
 
-            $atc = "";
+            // $atc = new \Workerman\Connection\AsyncTcpConnection($this->server);
             $server = $this->server;
 
             $fpkg = $this->username ."||" . $this->password . "||" . $orgin . "||" . $trans;
 
             $worker = new \Workerman\Worker($mirror);
 
-            $worker->onConnect = function ($conn) use ($fpkg, &$atc, $server) {
-                $atc = new \Workerman\Connection\AsyncTcpConnection($server);
+            $worker->onConnect = function ($conn) use ($fpkg, $server) {
+                $conn->atc = new \Workerman\Connection\AsyncTcpConnection($server);
 
-                $atc->onMessage = function($c, $m) use ($conn){
+                $conn->atc->onMessage = function($c, $m) use ($conn){
                     $conn->send(base64_decode($m));
                 };
-                $atc->onClose = function($c) use ($conn){
+                $conn->atc->onClose = function($c) use ($conn){
                     $conn->close();
                 };
 
-                $atc->connect();
-                $atc->send($fpkg);
+                $conn->atc->connect();
+                $conn->atc->send($fpkg);
             };
 
-            $worker->onMessage = function($conn, $msg) use ($atc){
-                $atc->send(base64_encode($msg));
+            $worker->onMessage = function($conn, $msg){
+                // if($atc !== "")
+                $conn->atc->send(base64_encode($msg));
             };
 
-            $worker->onClose = function($conn) use ($atc){
-                $atc->close();
+            $worker->onClose = function($conn){
+                // if($atc !== "")
+                $conn->atc->close();
             };
 
             $this->map[] = [$orgin, $mirror, $trans];
