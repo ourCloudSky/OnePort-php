@@ -10,7 +10,7 @@ A Super Fast And Good Proxy Written in PHP.
 https://www.bilibili.com/video/av15186309/
 
 ## 文档 Document
-https://github.com/ourCloudSky/OnePort-php/blob/master/README.md
+https://github.com/ourCloudSky/OnePort-php/blob/master/Document-zh_cn.md
 
 ## 特性 Feature
 - Fast, Responsive, Cross-platform | 快速，响应式，跨平台
