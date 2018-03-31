@@ -93,6 +93,10 @@
 
         }
 
+        public function getCount(){
+            return $this->config['count'];
+        }
+
         public function handleConnect($conn){
 
             $conn->id = ++$this->id;
